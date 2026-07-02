@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博客 | 懒家伙</title>
+    <meta name="description" content="懒家伙的技术博客 - 分享 vib coding、创意编程和技术探索的心得">
+
+    <!-- 字体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/x-icon.css">
+
+    <!-- 样式 -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cyberpunk.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/blog.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+    <!-- 扫描线效果 -->
+    <div class="scanlines"></div>
+
+    <!-- 背景网格 -->
+    <div class="grid-bg"></div>
+
+    <!-- 导航栏 -->
+    <nav class="cyber-nav">
+        <div class="nav-brand">
+            <span class="glitch" data-text="懒家伙">懒家伙</span>
+            <span class="terminal-cursor">_</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">
+                <span class="link-text">首页</span>
+                <span class="link-decoration">//</span>
+            </a>
+            <a href="projects.html" class="nav-link">
+                <span class="link-text">作品集</span>
+                <span class="link-decoration">//</span>
+            </a>
+            <a href="blog.html" class="nav-link active">
+                <span class="link-text">博客</span>
+                <span class="link-decoration">//</span>
+            </a>
+            <a href="about.html" class="nav-link">
+                <span class="link-text">关于我</span>
+                <span class="link-decoration">//</span>
+            </a>
+        </div>
+        <div class="nav-controls">
+            <button class="cyber-btn theme-toggle" id="themeToggle">
+                <i class="fas fa-adjust"></i>
+            </button>
+            <button class="cyber-btn mobile-menu" id="mobileMenu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 主内容 -->
+    <main class="main-content">
+        <!-- 页面头部 -->
+        <section class="blog-header">
+            <div class="header-content">
+                <h1 class="page-title">
+                    <span class="title-decoration">&lt;</span>
+                    博客
+                    <span class="title-decoration">/&gt;</span>
+                </h1>
+                <p class="page-description">
+                    分享我的 vib coding 经验、技术探索和创意思考。
+                    在这里，代码与艺术交汇，技术与灵感碰撞。
+                </p>
+            </div>
+        </section>
+
+        <!-- 博客内容区域 -->
+        <section class="blog-content-section">
+            <div class="blog-layout">
+                <!-- 文章列表 -->
+                <div class="blog-posts">
+                    <!-- 文章卡片将通过 JavaScript 动态加载 -->
+                    <div class="post-card loading">
+                        <div class="card-placeholder">
+                            <div class="placeholder-image"></div>
+                            <div class="placeholder-text"></div>
+                            <div class="placeholder-text short"></div>
+                        </div>
+                    </div>
+                    <div class="post-card loading">
+                        <div class="card-placeholder">
+                            <div class="placeholder-image"></div>
+                            <div class="placeholder-text"></div>
+                            <div class="placeholder-text short"></div>
+                        </div>
+                    </div>
+                    <div class="post-card loading">
+                        <div class="card-placeholder">
+                            <div class="placeholder-image"></div>
+                            <div class="placeholder-text"></div>
+                            <div class="placeholder-text short"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 侧边栏 -->
+                <aside class="blog-sidebar">
+                    <!-- 搜索框 -->
+                    <div class="sidebar-widget search-widget">
+                        <h3 class="widget-title">
+                            <i class="fas fa-search"></i>
+                            搜索文章
+                        </h3>
+                        <div class="search-box">
+                            <input type="text" class="search-input" placeholder="搜索文章...">
+                            <button class="search-btn">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 分类列表 -->
+                    <div class="sidebar-widget categories-widget">
+                        <h3 class="widget-title">
+                            <i class="fas fa-folder"></i>
+                            文章分类
+                        </h3>
+                        <ul class="categories-list">
+                            <li class="category-item">
+                                <a href="#" class="category-link" data-category="all">
+                                    <span class="category-name">全部文章</span>
+                                    <span class="category-count">0</span>
+                                </a>
+                            </li>
+                            <li class="category-item">
+                                <a href="#" class="category-link" data-category="vib-coding">
+                                    <span class="category-name">Vib Coding</span>
+                                    <span class="category-count">0</span>
+                                </a>
+                            </li>
+                            <li class="category-item">
+                                <a href="#" class="category-link" data-category="creative">
+                                    <span class="category-name">创意编程</span>
+                                    <span class="category-count">0</span>
+                                </a>
+                            </li>
+                            <li class="category-item">
+                                <a href="#" class="category-link" data-category="tutorial">
+                                    <span class="category-name">教程分享</span>
+                                    <span class="category-count">0</span>
+                                </a>
+                            </li>
+                            <li class="category-item">
+                                <a href="#" class="category-link" data-category="thoughts">
+                                    <span class="category-name">技术思考</span>
+                                    <span class="category-count">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- 标签云 -->
+                    <div class="sidebar-widget tags-widget">
+                        <h3 class="widget-title">
+                            <i class="fas fa-tags"></i>
+                            热门标签
+                        </h3>
+                        <div class="tags-cloud">
+                            <!-- 标签将通过 JavaScript 动态生成 -->
+                        </div>
+                    </div>
+
+                    <!-- 最新文章 -->
+                    <div class="sidebar-widget recent-widget">
+                        <h3 class="widget-title">
+                            <i class="fas fa-clock"></i>
+                            最新文章
+                        </h3>
+                        <ul class="recent-posts">
+                            <!-- 最新文章将通过 JavaScript 动态生成 -->
+                        </ul>
+                    </div>
+
+                    <!-- 社交链接 -->
+                    <div class="sidebar-widget social-widget">
+                        <h3 class="widget-title">
+                            <i class="fas fa-share-alt"></i>
+                            关注我
+                        </h3>
+                        <div class="social-links">
+                            <a href="https://x.com/rogue30481577" target="_blank" rel="noopener noreferrer" class="social-link twitter">
+                                <i class="x-icon"></i>
+                                <span>X</span>
+                            </a>
+                            <a href="https://github.com/RipWheeler-max" target="_blank" rel="noopener noreferrer" class="social-link github">
+                                <i class="fab fa-github"></i>
+                                <span>GitHub</span>
+                            </a>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- 分页 -->
+        <section class="blog-pagination">
+            <div class="pagination-container">
+                <button class="pagination-btn prev" disabled>
+                    <i class="fas fa-chevron-left"></i>
+                    <span>上一页</span>
+                </button>
+                <div class="pagination-numbers">
+                    <button class="pagination-number active">1</button>
+                    <button class="pagination-number">2</button>
+                    <button class="pagination-number">3</button>
+                </div>
+                <button class="pagination-btn next">
+                    <span>下一页</span>
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="cyber-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="glitch" data-text="懒家伙">懒家伙</span>
+                <p class="footer-tagline">创意开发者 & Vib Coding 探索者</p>
+            </div>
+            <div class="footer-links">
+                <a href="https://x.com/rogue30481577" target="_blank" rel="noopener noreferrer">
+                    <i class="x-icon"></i>
+                </a>
+                <a href="https://github.com/RipWheeler-max" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy; 2026 RipWheelercopy; 2026 懒家伙. 保留所有权利。</p>
+                <p class="cyber-text">使用 ❤️ 和代码构建</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 脚本 -->
+    <script src="js/api.js"></script>
+    <script src="js/art-text.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/effects.js"></script>
+    <script src="js/blog.js"></script>
+</body>
+</html>

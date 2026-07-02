@@ -1,0 +1,449 @@
+/* 响应式样式 */
+
+/* 平板设备 */
+@media (max-width: 1024px) {
+    :root {
+        font-size: 15px;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: var(--space-2xl);
+    }
+
+    .hero-visual {
+        order: -1;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .title-line.accent {
+        font-size: 2rem;
+    }
+
+    .social-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+    }
+
+    .projects-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .tech-grid {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+}
+
+/* 移动设备 */
+@media (max-width: 768px) {
+    :root {
+        font-size: 14px;
+    }
+
+    .cyber-nav {
+        padding: var(--space-md);
+        flex-wrap: wrap;
+    }
+
+    .nav-brand {
+        font-size: 1.2rem;
+    }
+
+    .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: var(--space-sm);
+        padding: var(--space-md) 0;
+        border-top: 1px solid var(--border-color);
+        margin-top: var(--space-md);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-link {
+        padding: var(--space-md);
+        justify-content: center;
+    }
+
+    .nav-controls {
+        gap: var(--space-xs);
+    }
+
+    .mobile-menu {
+        display: block;
+    }
+
+    /* 首页 Hero 区域 */
+    .hero-section {
+        padding: 100px 16px 60px;
+        min-height: auto;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .hero-text {
+        text-align: center;
+    }
+
+    .hero-name {
+        font-size: 2.5rem;
+    }
+
+    .hero-title {
+        font-size: 1.2rem;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+        margin: 0 auto 2rem;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        gap: var(--space-md);
+    }
+
+    .cyber-btn-primary,
+    .cyber-btn-secondary {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* 代码框 */
+    .code-terminal {
+        max-width: 100%;
+    }
+
+    .terminal-body {
+        font-size: 0.8rem;
+        padding: 16px;
+    }
+
+    /* 技能区域 */
+    .skills-section,
+    .projects-section,
+    .blog-section,
+    .contact-section {
+        padding: 60px 16px;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .section-subtitle {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .skill-category {
+        padding: 20px;
+    }
+
+    /* 项目和博客网格 */
+    .projects-grid,
+    .blog-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .project-card,
+    .blog-card {
+        padding: 20px;
+    }
+
+    .footer-content {
+        gap: var(--space-lg);
+    }
+
+    .footer-brand .glitch {
+        font-size: 1.2rem;
+    }
+
+    .social-links {
+        gap: 20px;
+    }
+
+    .social-link {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+    }
+}
+
+/* 小屏幕移动设备 */
+@media (max-width: 480px) {
+    :root {
+        font-size: 13px;
+    }
+
+    .hero-name {
+        font-size: 2rem;
+    }
+
+    .hero-title {
+        font-size: 1.1rem;
+    }
+
+    .hero-description {
+        font-size: 0.95rem;
+    }
+
+    .terminal-body {
+        font-size: 0.75rem;
+        padding: 12px;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .skill-category {
+        padding: 16px;
+    }
+
+    .skill-category-title {
+        font-size: 1.1rem;
+    }
+
+    .skill-tag {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+
+    .project-info,
+    .blog-card {
+        padding: 16px;
+    }
+
+    .project-title,
+    .blog-title {
+        font-size: 1.1rem;
+    }
+
+    .project-description,
+    .blog-excerpt {
+        font-size: 0.9rem;
+    }
+
+    .social-links {
+        gap: 16px;
+    }
+
+    .social-link {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+}
+
+/* 超小屏幕 */
+@media (max-width: 360px) {
+    :root {
+        font-size: 12px;
+    }
+
+    .hero-title {
+        font-size: 1.5rem;
+    }
+
+    .title-line.accent {
+        font-size: 1.2rem;
+    }
+
+    .nav-brand {
+        font-size: 1rem;
+    }
+
+    .section-title {
+        font-size: 1.3rem;
+    }
+
+    .cyber-btn {
+        padding: var(--space-sm) var(--space-md);
+        font-size: 0.85rem;
+    }
+}
+
+/* 高分辨率屏幕 */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .grid-bg {
+        background-size: 25px 25px;
+    }
+}
+
+/* 横屏模式 */
+@media (orientation: landscape) and (max-height: 500px) {
+    .hero-section {
+        min-height: auto;
+        padding: var(--space-xl) var(--space-md);
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-xl);
+    }
+
+    .hero-visual {
+        order: 0;
+    }
+}
+
+/* 打印样式 */
+@media print {
+    .cyber-nav,
+    .scanlines,
+    .grid-bg,
+    .hero-actions,
+    .social-section,
+    .cyber-footer {
+        display: none !important;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+
+    .hero-title {
+        color: black;
+        text-shadow: none;
+    }
+
+    .title-line.accent {
+        color: #333;
+        text-shadow: none;
+    }
+
+    .hero-description {
+        color: #666;
+    }
+
+    .cyber-card {
+        border: 1px solid #ccc;
+        box-shadow: none;
+    }
+
+    .code-block {
+        background: #f5f5f5;
+        border: 1px solid #ddd;
+    }
+
+    .keyword { color: #d14; }
+    .variable { color: #099; }
+    .property { color: #900; }
+    .string { color: #d14; }
+}
+
+/* 无障碍：减少动画 */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .glitch::before,
+    .glitch::after {
+        animation: none;
+    }
+
+    .scanlines {
+        display: none;
+    }
+
+    .grid-bg {
+        background-image: none;
+    }
+}
+
+/* 高对比度模式 */
+@media (prefers-contrast: high) {
+    :root {
+        --bg-primary: #000000;
+        --bg-secondary: #111111;
+        --bg-tertiary: #222222;
+        --text-primary: #ffffff;
+        --text-secondary: #cccccc;
+        --border-color: rgba(0, 245, 255, 0.5);
+    }
+
+    .neon-border::before {
+        opacity: 1;
+    }
+}
+
+/* 深色模式偏好 */
+@media (prefers-color-scheme: dark) {
+    :root {
+        color-scheme: dark;
+    }
+}
+
+/* 触摸设备优化 */
+@media (hover: none) and (pointer: coarse) {
+    .project-card:hover,
+    .social-card:hover,
+    .tech-item:hover {
+        transform: none;
+        box-shadow: var(--shadow-neon);
+    }
+
+    .cyber-btn:hover {
+        transform: none;
+    }
+
+    .cyber-btn:active {
+        transform: scale(0.98);
+    }
+}
+
+/* 大屏幕优化 */
+@media (min-width: 1400px) {
+    .hero-content {
+        max-width: 1400px;
+    }
+
+    .hero-title {
+        font-size: 4rem;
+    }
+
+    .title-line.accent {
+        font-size: 3rem;
+    }
+
+    .hero-description {
+        font-size: 1.2rem;
+    }
+}
+
+/* 超宽屏幕 */
+@media (min-width: 1800px) {
+    .hero-content {
+        max-width: 1600px;
+    }
+
+    .hero-title {
+        font-size: 4.5rem;
+    }
+
+    .title-line.accent {
+        font-size: 3.5rem;
+    }
+}

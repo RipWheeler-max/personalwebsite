@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理后台 | 懒家伙 Blog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/admin/css/admin.css">
+</head>
+<body>
+    <!-- 侧边栏 -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2 class="logo">
+                <span class="logo-icon">⚡</span>
+                <span class="logo-text">ADMIN</span>
+            </h2>
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active" data-section="dashboard">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>仪表盘</span>
+            </a>
+            <a href="#" class="nav-item" data-section="projects">
+                <i class="fas fa-project-diagram"></i>
+                <span>项目管理</span>
+            </a>
+            <a href="#" class="nav-item" data-section="blog">
+                <i class="fas fa-blog"></i>
+                <span>博客管理</span>
+            </a>
+            <a href="#" class="nav-item" data-section="analytics">
+                <i class="fas fa-chart-bar"></i>
+                <span>访问统计</span>
+            </a>
+            <a href="#" class="nav-item" data-section="profile">
+                <i class="fas fa-user"></i>
+                <span>个人信息</span>
+            </a>
+            <a href="#" class="nav-item" data-section="settings">
+                <i class="fas fa-cog"></i>
+                <span>系统设置</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="/" class="nav-item" target="_blank">
+                <i class="fas fa-external-link-alt"></i>
+                <span>查看博客</span>
+            </a>
+            <a href="#" class="nav-item" id="logoutBtn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>退出登录</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- 主内容区 -->
+    <main class="main-content">
+        <!-- 顶部导航 -->
+        <header class="top-bar">
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="top-bar-right">
+                <span class="welcome-text">
+                    欢迎，<span id="adminUsername">Admin</span>
+                </span>
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-adjust"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- 内容区域 -->
+        <div class="content-wrapper">
+            <!-- 仪表盘 -->
+            <section class="content-section active" id="section-dashboard">
+                <h2 class="section-title">
+                    <i class="fas fa-tachometer-alt"></i>
+                    仪表盘
+                </h2>
+                <div class="dashboard-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon projects">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-number" id="totalProjects">0</span>
+                            <span class="stat-label">总项目数</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon blog">
+                            <i class="fas fa-blog"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-number" id="totalPosts">0</span>
+                            <span class="stat-label">博客文章</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon featured">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-number" id="featuredProjects">0</span>
+                            <span class="stat-label">精选项目</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon published">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-number" id="publishedPosts">0</span>
+                            <span class="stat-label">已发布文章</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recent-activity">
+                    <h3>最近更新</h3>
+                    <div class="activity-list" id="recentActivity">
+                        <!-- 动态生成 -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- 项目管理 -->
+            <section class="content-section" id="section-projects">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <i class="fas fa-project-diagram"></i>
+                        项目管理
+                    </h2>
+                    <button class="btn btn-primary" id="addProjectBtn">
+                        <i class="fas fa-plus"></i> 添加项目
+                    </button>
+                </div>
+
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>项目名称</th>
+                                <th>分类</th>
+                                <th>标签</th>
+                                <th>状态</th>
+                                <th>日期</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="projectsTableBody">
+                            <!-- 动态生成 -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 博客管理 -->
+            <section class="content-section" id="section-blog">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <i class="fas fa-blog"></i>
+                        博客管理
+                    </h2>
+                    <button class="btn btn-primary" id="addPostBtn">
+                        <i class="fas fa-plus"></i> 添加文章
+                    </button>
+                </div>
+
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>文章标题</th>
+                                <th>分类</th>
+                                <th>状态</th>
+                                <th>日期</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="blogTableBody">
+                            <!-- 动态生成 -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 访问统计 -->
+            <section class="content-section" id="section-analytics">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <i class="fas fa-chart-bar"></i>
+                        访问统计
+                    </h2>
+                </div>
+
+                <div class="stats-cards">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-eye"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-number" id="todayViews">0</span>
+                            <span class="stat-label">今日访问</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-number" id="weeklyViews">0</span>
+                            <span class="stat-label">本周访问</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-comments"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-number" id="totalComments">0</span>
+                            <span class="stat-label">总评论数</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="analytics-grid">
+                    <div class="analytics-card">
+                        <h3><i class="fas fa-fire"></i> 热门文章</h3>
+                        <div id="popularPosts" class="popular-list">
+                            <!-- 动态生成 -->
+                        </div>
+                    </div>
+                    <div class="analytics-card">
+                        <h3><i class="fas fa-history"></i> 最近访问</h3>
+                        <div id="recentViews" class="recent-list">
+                            <!-- 动态生成 -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 个人信息 -->
+            <section class="content-section" id="section-profile">
+                <h2 class="section-title">
+                    <i class="fas fa-user"></i>
+                    个人信息
+                </h2>
+                <form id="profileForm" class="form-grid">
+                    <div class="form-group">
+                        <label for="profileName">姓名</label>
+                        <input type="text" id="profileName" placeholder="您的名称">
+                    </div>
+                    <div class="form-group">
+                        <label for="profileTitle">头衔</label>
+                        <input type="text" id="profileTitle" placeholder="创意开发者">
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="profileBio">个人简介</label>
+                        <textarea id="profileBio" rows="4" placeholder="介绍一下自己..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="profileLocation">所在地</label>
+                        <input type="text" id="profileLocation" placeholder="城市">
+                    </div>
+                    <div class="form-group">
+                        <label for="profileEmail">邮箱</label>
+                        <input type="email" id="profileEmail" placeholder="email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="profileTwitter">Twitter 链接</label>
+                        <input type="url" id="profileTwitter" placeholder="https://x.com/...">
+                    </div>
+                    <div class="form-group">
+                        <label for="profileGithub">GitHub 链接</label>
+                        <input type="url" id="profileGithub" placeholder="https://github.com/...">
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> 保存修改
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- 系统设置 -->
+            <section class="content-section" id="section-settings">
+                <h2 class="section-title">
+                    <i class="fas fa-cog"></i>
+                    系统设置
+                </h2>
+                <div class="settings-card">
+                    <h3>修改密码</h3>
+                    <form id="passwordForm">
+                        <div class="form-group">
+                            <label for="oldPassword">当前密码</label>
+                            <input type="password" id="oldPassword" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="newPassword">新密码</label>
+                            <input type="password" id="newPassword" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">确认新密码</label>
+                            <input type="password" id="confirmPassword" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-key"></i> 修改密码
+                        </button>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- 模态框 -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal" id="modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">标题</h3>
+                <button class="modal-close" id="modalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- 动态内容 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 提示消息 -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="/admin/js/admin.js"></script>
+</body>
+</html>
