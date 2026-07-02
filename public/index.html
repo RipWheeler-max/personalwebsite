@@ -768,13 +768,8 @@
                 <span class="glitch" data-text="懒家伙">懒家伙</span>
                 <p class="footer-tagline">创意开发者 & Vib Coding 探索者</p>
             </div>
-            <div class="footer-links">
-                <a href="https://x.com/rogue30481577" target="_blank" rel="noopener noreferrer">
-                    <i class="x-icon"></i>
-                </a>
-                <a href="https://github.com/RipWheeler-max" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-github"></i>
-                </a>
+            <div class="footer-links" id="footerLinks">
+                <!-- 动态生成 -->
             </div>
             <div class="footer-copyright">
                 <p>&copy; 2026 懒家伙. 保留所有权利。</p>
@@ -869,22 +864,42 @@
         // 渲染社交链接
         function renderSocialLinks(profile) {
             const socialLinks = document.getElementById('socialLinks');
+            const footerLinks = document.getElementById('footerLinks');
             const links = [];
+            const footerLinksHtml = [];
 
             if (profile.github) {
                 links.push(`<a href="${profile.github}" target="_blank" rel="noopener noreferrer" class="social-link" title="GitHub">
                     <i class="fab fa-github"></i>
                 </a>`);
+                footerLinksHtml.push(`<a href="${profile.github}" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-github"></i>
+                </a>`);
             }
 
             if (profile.twitter) {
-                links.push(`<a href="${profile.twitter}" target="_blank" rel="noopener noreferrer" class="social-link" title="Twitter">
+                links.push(`<a href="${profile.twitter}" target="_blank" rel="noopener noreferrer" class="social-link" title="Twitter/X">
                     <i class="fab fa-twitter"></i>
+                </a>`);
+                footerLinksHtml.push(`<a href="${profile.twitter}" target="_blank" rel="noopener noreferrer">
+                    <i class="x-icon"></i>
+                </a>`);
+            }
+
+            if (profile.linkedin) {
+                links.push(`<a href="${profile.linkedin}" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>`);
+                footerLinksHtml.push(`<a href="${profile.linkedin}" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-linkedin"></i>
                 </a>`);
             }
 
             if (profile.email) {
                 links.push(`<a href="mailto:${profile.email}" class="social-link" title="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>`);
+                footerLinksHtml.push(`<a href="mailto:${profile.email}">
                     <i class="fas fa-envelope"></i>
                 </a>`);
             }
@@ -893,10 +908,11 @@
                 <a href="https://github.com" target="_blank" class="social-link" title="GitHub">
                     <i class="fab fa-github"></i>
                 </a>
-                <a href="https://twitter.com" target="_blank" class="social-link" title="Twitter">
-                    <i class="fab fa-twitter"></i>
-                </a>
             `;
+
+            if (footerLinks) {
+                footerLinks.innerHTML = footerLinksHtml.join('') || '';
+            }
         }
 
         // 加载项目

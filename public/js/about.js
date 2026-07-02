@@ -5,6 +5,7 @@
 // 等待 DOM 加载完成
 document.addEventListener('DOMContentLoaded', () => {
     initAboutPage();
+    loadProfileForAbout();
 });
 
 /**
@@ -14,6 +15,44 @@ function initAboutPage() {
     initSkillBars();
     initTimelineAnimations();
     initCodeBlockEffects();
+}
+
+/**
+ * 加载个人信息并更新代码框
+ */
+async function loadProfileForAbout() {
+    try {
+        const profile = await getProfile();
+        if (!profile) return;
+
+        // 更新代码框中的社交信息
+        const codeBlock = document.querySelector('.code-block code');
+        if (codeBlock) {
+            const twitterLine = codeBlock.querySelector('.property.twitter');
+            const githubLine = codeBlock.querySelector('.property.github');
+
+            // 更新twitter行
+            if (twitterLine && profile.twitter) {
+                const twitterValue = twitterLine.parentElement.querySelector('.string');
+                if (twitterValue) {
+                    // 从URL中提取用户名
+                    const twitterMatch = profile.twitter.match(/(?:x\.com|twitter\.com)\/([a-zA-Z0-9_]+)/);
+                    twitterValue.textContent = twitterMatch ? `@${twitterMatch[1]}` : profile.twitter;
+                }
+            }
+
+            // 更新github行
+            if (githubLine && profile.github) {
+                const githubValue = githubLine.parentElement.querySelector('.string');
+                if (githubValue) {
+                    const githubMatch = profile.github.match(/github\.com\/([a-zA-Z0-9_-]+)/);
+                    githubValue.textContent = githubMatch ? githubMatch[1] : profile.github;
+                }
+            }
+        }
+    } catch (error) {
+        console.error('加载个人信息失败:', error);
+    }
 }
 
 /**

@@ -491,13 +491,8 @@
                 <span class="glitch" data-text="懒家伙">懒家伙</span>
                 <p class="footer-tagline">创意开发者 & Vib Coding 探索者</p>
             </div>
-            <div class="footer-links">
-                <a href="https://x.com/rogue30481577" target="_blank" rel="noopener noreferrer">
-                    <i class="x-icon"></i>
-                </a>
-                <a href="https://github.com/RipWheeler-max" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-github"></i>
-                </a>
+            <div class="footer-links" id="footerLinks">
+                <!-- 动态生成 -->
             </div>
             <div class="footer-copyright">
                 <p>&copy; 2026 懒家伙. 保留所有权利。</p>
@@ -507,9 +502,39 @@
     </footer>
 
     <!-- 脚本 -->
+    <script src="js/api.js"></script>
     <script src="js/main.js"></script>
     <script src="js/art-text.js"></script>
     <script src="js/effects.js"></script>
     <script src="js/about.js"></script>
+    <script>
+        // 加载页脚社交链接
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const profile = await getProfile();
+                if (profile) {
+                    const footerLinks = document.getElementById('footerLinks');
+                    const links = [];
+
+                    if (profile.github) {
+                        links.push(`<a href="${profile.github}" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>`);
+                    }
+                    if (profile.twitter) {
+                        links.push(`<a href="${profile.twitter}" target="_blank" rel="noopener noreferrer"><i class="x-icon"></i></a>`);
+                    }
+                    if (profile.linkedin) {
+                        links.push(`<a href="${profile.linkedin}" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>`);
+                    }
+                    if (profile.email) {
+                        links.push(`<a href="mailto:${profile.email}"><i class="fas fa-envelope"></i></a>`);
+                    }
+
+                    footerLinks.innerHTML = links.join('') || '';
+                }
+            } catch (error) {
+                console.error('加载社交链接失败:', error);
+            }
+        });
+    </script>
 </body>
 </html>
