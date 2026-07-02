@@ -707,8 +707,10 @@ async function loadProfile() {
     document.getElementById('profileBio').value = profile.bio || '';
     document.getElementById('profileLocation').value = profile.location || '';
     document.getElementById('profileEmail').value = profile.email || '';
-    document.getElementById('profileTwitter').value = profile.social?.twitter || '';
-    document.getElementById('profileGithub').value = profile.social?.github || '';
+    document.getElementById('profileTwitter').value = profile.social?.twitter || profile.twitter || '';
+    document.getElementById('profileGithub').value = profile.social?.github || profile.github || '';
+    document.getElementById('profileLinkedin').value = profile.social?.linkedin || profile.linkedin || '';
+    document.getElementById('profileSkills').value = (profile.skills || []).join(', ');
 }
 
 async function saveProfile() {
@@ -718,9 +720,14 @@ async function saveProfile() {
         bio: document.getElementById('profileBio').value,
         location: document.getElementById('profileLocation').value,
         email: document.getElementById('profileEmail').value,
+        twitter: document.getElementById('profileTwitter').value,
+        github: document.getElementById('profileGithub').value,
+        linkedin: document.getElementById('profileLinkedin').value,
+        skills: document.getElementById('profileSkills').value.split(',').map(s => s.trim()).filter(s => s),
         social: {
             twitter: document.getElementById('profileTwitter').value,
-            github: document.getElementById('profileGithub').value
+            github: document.getElementById('profileGithub').value,
+            linkedin: document.getElementById('profileLinkedin').value
         }
     };
 

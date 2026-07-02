@@ -125,7 +125,14 @@ const ProfileSchema = new mongoose.Schema({
   email: { type: String, default: '' },
   github: { type: String, default: '' },
   twitter: { type: String, default: '' },
+  linkedin: { type: String, default: '' },
+  location: { type: String, default: '' },
   skills: [{ type: String }],
+  social: {
+    twitter: { type: String, default: '' },
+    github: { type: String, default: '' },
+    linkedin: { type: String, default: '' },
+  },
   updatedAt: { type: Date, default: Date.now },
 });
 
@@ -385,7 +392,16 @@ app.post('/api/auth/change-password', authMiddleware, async (req, res) => {
       });
     }
 
-    const isValid = await bcrypt.compare(oldPassword, admin.password);
+    // 支持明文密码和bcrypt hash密码
+    let isValid = false;
+    if (admin.password.startsWith('$2a$') || admin.password.startsWith('$2b$')) {
+      // bcrypt hash
+      isValid = await bcrypt.compare(oldPassword, admin.password);
+    } else {
+      // 明文密码
+      isValid = (admin.password === oldPassword);
+    }
+
     if (!isValid) {
       return res.status(400).json({
         success: false,
