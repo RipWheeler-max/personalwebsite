@@ -18,7 +18,7 @@ function initAboutPage() {
 }
 
 /**
- * 加载个人信息并更新代码框
+ * 加载个人信息并更新代码框和联系方式
  */
 async function loadProfileForAbout() {
     try {
@@ -35,7 +35,6 @@ async function loadProfileForAbout() {
             if (twitterLine && profile.twitter) {
                 const twitterValue = twitterLine.parentElement.querySelector('.string');
                 if (twitterValue) {
-                    // 从URL中提取用户名
                     const twitterMatch = profile.twitter.match(/(?:x\.com|twitter\.com)\/([a-zA-Z0-9_]+)/);
                     twitterValue.textContent = twitterMatch ? `@${twitterMatch[1]}` : profile.twitter;
                 }
@@ -49,6 +48,82 @@ async function loadProfileForAbout() {
                     githubValue.textContent = githubMatch ? githubMatch[1] : profile.github;
                 }
             }
+        }
+
+        // 动态加载联系方式
+        const contactMethods = document.getElementById('contactMethods');
+        if (contactMethods) {
+            const methods = [];
+
+            if (profile.twitter) {
+                const twitterMatch = profile.twitter.match(/(?:x\.com|twitter\.com)\/([a-zA-Z0-9_]+)/);
+                const displayName = twitterMatch ? `@${twitterMatch[1]}` : profile.twitter;
+                methods.push(`
+                    <div class="contact-method">
+                        <div class="method-icon">
+                            <i class="x-icon"></i>
+                        </div>
+                        <div class="method-info">
+                            <h3>X</h3>
+                            <a href="${profile.twitter}" target="_blank" rel="noopener noreferrer">
+                                ${displayName}
+                            </a>
+                        </div>
+                    </div>
+                `);
+            }
+
+            if (profile.github) {
+                const githubMatch = profile.github.match(/github\.com\/([a-zA-Z0-9_-]+)/);
+                const displayName = githubMatch ? githubMatch[1] : profile.github;
+                methods.push(`
+                    <div class="contact-method">
+                        <div class="method-icon">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <div class="method-info">
+                            <h3>GitHub</h3>
+                            <a href="${profile.github}" target="_blank" rel="noopener noreferrer">
+                                ${displayName}
+                            </a>
+                        </div>
+                    </div>
+                `);
+            }
+
+            if (profile.linkedin) {
+                methods.push(`
+                    <div class="contact-method">
+                        <div class="method-icon">
+                            <i class="fab fa-linkedin"></i>
+                        </div>
+                        <div class="method-info">
+                            <h3>LinkedIn</h3>
+                            <a href="${profile.linkedin}" target="_blank" rel="noopener noreferrer">
+                                查看资料
+                            </a>
+                        </div>
+                    </div>
+                `);
+            }
+
+            if (profile.email) {
+                methods.push(`
+                    <div class="contact-method">
+                        <div class="method-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="method-info">
+                            <h3>Email</h3>
+                            <a href="mailto:${profile.email}">
+                                ${profile.email}
+                            </a>
+                        </div>
+                    </div>
+                `);
+            }
+
+            contactMethods.innerHTML = methods.join('') || '<p style="color: #666;">暂无联系方式</p>';
         }
     } catch (error) {
         console.error('加载个人信息失败:', error);
