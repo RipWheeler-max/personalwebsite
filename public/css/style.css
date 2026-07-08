@@ -592,6 +592,46 @@ body {
     min-height: 300px;
 }
 
+.project-info {
+    padding: var(--space-xl);
+}
+
+.project-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    margin-bottom: var(--space-sm);
+    transition: var(--transition-normal);
+}
+
+.project-card:hover .project-title {
+    color: var(--neon-blue);
+    text-shadow: 0 0 5px rgba(0, 245, 255, 0.5);
+}
+
+.project-description {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: var(--space-lg);
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+}
+
+.project-tag {
+    background: rgba(0, 245, 255, 0.1);
+    color: var(--neon-blue);
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    border: 1px solid rgba(0, 245, 255, 0.2);
+    font-family: var(--font-main);
+}
+
 .card-placeholder {
     padding: var(--space-xl);
     display: flex;
