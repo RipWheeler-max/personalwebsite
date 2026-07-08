@@ -81,7 +81,7 @@ function createPostCard(post, index) {
 
     // 图片优先：有图片用图片，没图片用艺术字
     let headerHTML;
-    if (post.image && post.image !== '#' && !post.image.includes('data:image')) {
+    if (post.image && post.image !== '#') {
         headerHTML = `
             <div class="card-image">
                 <img src="${post.image}" alt="${escapeHtml(post.title)}" loading="lazy">

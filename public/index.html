@@ -773,7 +773,7 @@
             </div>
             <div class="footer-copyright">
                 <p>&copy; 2026 懒家伙. 保留所有权利。</p>
-                <p class="cyber-text">使用 ❤️ 和代码构建 <span style="margin-left: 10px; opacity: 0.7; font-size: 0.8em; border: 1px solid rgba(0,245,255,0.3); padding: 2px 6px; border-radius: 4px;">v0.0.7</span></p>
+                <p class="cyber-text">使用 ❤️ 和代码构建 <span style="margin-left: 10px; opacity: 0.7; font-size: 0.8em; border: 1px solid rgba(0,245,255,0.3); padding: 2px 6px; border-radius: 4px;">v0.1.0</span></p>
             </div>
         </div>
     </footer>
@@ -927,9 +927,15 @@
 
                 const projectsGrid = document.getElementById('projectsGrid');
                 projectsGrid.innerHTML = displayProjects.map((project, index) => {
-                    // 使用艺术字生成器
+                    // 图片优先：有图片用图片，没图片用艺术字
                     let headerHTML;
-                    if (typeof ArtTextGenerator !== 'undefined') {
+                    if (project.image && project.image !== '#') {
+                        headerHTML = `
+                            <div class="card-image" style="height: 200px; overflow: hidden; position: relative; border-bottom: 1px solid var(--border-color);">
+                                <img src="${project.image}" alt="${escapeHtml(project.title)}" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+                            </div>
+                        `;
+                    } else if (typeof ArtTextGenerator !== 'undefined') {
                         headerHTML = `<div class="card-header-art">${ArtTextGenerator.generate(project.title, index)}</div>`;
                     } else {
                         headerHTML = `<div class="card-image-placeholder"><span>${escapeHtml(project.title)}</span></div>`;

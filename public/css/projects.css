@@ -171,12 +171,12 @@
 }
 
 .project-card.featured {
-    border-color: var(--neon-pink);
+    /* 取消了突兀的边框，保持与其他卡片一致的基础边框 */
 }
 
 .project-card.featured:hover {
-    box-shadow: 0 0 10px rgba(255, 0, 255, 0.3),
-                0 0 20px rgba(255, 0, 255, 0.2);
+    box-shadow: 0 0 10px rgba(0, 245, 255, 0.2),
+                0 0 20px rgba(0, 245, 255, 0.1);
 }
 
 .project-card.loading {

@@ -67,7 +67,7 @@ function createProjectCard(project, index) {
 
     // 图片优先：有图片用图片，没图片用艺术字
     let headerHTML;
-    if (project.image && project.image !== '#' && !project.image.includes('data:image')) {
+    if (project.image && project.image !== '#') {
         headerHTML = `
             <div class="card-image">
                 <img src="${project.image}" alt="${escapeHtml(project.title)}" loading="lazy">
