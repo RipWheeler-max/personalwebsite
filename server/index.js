@@ -14,6 +14,7 @@ const authRoutes = require('./routes/auth');
 const projectRoutes = require('./routes/projects');
 const blogRoutes = require('./routes/blog');
 const profileRoutes = require('./routes/profile');
+const uploadRoutes = require('./routes/upload');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -57,6 +58,9 @@ app.use('/api/projects', projectRoutes);
 
 // 博客管理
 app.use('/api/blog', blogRoutes);
+
+// 上传文件
+app.use('/api/upload', uploadRoutes);
 
 // 个人信息
 app.use('/api/profile', profileRoutes);
