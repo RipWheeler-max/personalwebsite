@@ -38,7 +38,7 @@ function initMatrixRain() {
     matrixContainer.className = 'matrix-rain';
     document.body.appendChild(matrixContainer);
 
-    const characters = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+    const characters = '01硪僾祢寔恏緈湢鍩埘堠沵説啲迗镸哋怺逺卐兲煋暒忈槑烎巭孬嫑靐玊嘂';
     const columns = Math.floor(window.innerWidth / 20);
 
     for (let i = 0; i < columns; i++) {
