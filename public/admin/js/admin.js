@@ -369,8 +369,14 @@ function openProjectModal(projectId = null) {
                 <input type="text" id="projectTags" placeholder="HTML, CSS, JavaScript">
             </div>
             <div class="form-group">
-                <label for="projectImage">图片链接</label>
-                <input type="text" id="projectImage" placeholder="图片URL">
+                <label for="projectImage">图片链接或上传</label>
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" id="projectImage" placeholder="图片URL 或 Ctrl+V 粘贴图片" style="flex: 1;">
+                    <label class="btn btn-secondary" style="margin: 0; cursor: pointer; padding: 0.5rem 1rem; display: flex; align-items: center;">
+                        <i class="fas fa-upload" style="margin-right: 5px;"></i> 上传
+                        <input type="file" id="projectImageFile" accept="image/*" style="display: none;">
+                    </label>
+                </div>
             </div>
             <div class="form-group">
                 <label for="projectGithub">GitHub 链接</label>
@@ -398,6 +404,28 @@ function openProjectModal(projectId = null) {
     if (isEdit) {
         loadProjectData(projectId);
     }
+
+    // 图片粘贴和上传逻辑
+    const imageInput = document.getElementById('projectImage');
+    const fileInput = document.getElementById('projectImageFile');
+    
+    fileInput.addEventListener('change', async (e) => {
+        if (e.target.files.length > 0) {
+            await handleImageUpload(e.target.files[0], imageInput);
+        }
+    });
+
+    imageInput.addEventListener('paste', async (e) => {
+        const items = e.clipboardData.items;
+        for (let i = 0; i < items.length; i++) {
+            if (items[i].type.indexOf('image') !== -1) {
+                e.preventDefault();
+                const file = items[i].getAsFile();
+                await handleImageUpload(file, imageInput);
+                break;
+            }
+        }
+    });
 
     // 表单提交
     document.getElementById('projectForm').addEventListener('submit', async (e) => {
@@ -450,6 +478,49 @@ async function saveProject(projectId) {
         loadProjects();
     } else {
         showToast(result?.message || '操作失败', 'error');
+    }
+}
+
+async function handleImageUpload(file, inputElement) {
+    if (!file) return;
+    
+    // 显示上传中...
+    const originalPlaceholder = inputElement.placeholder;
+    inputElement.placeholder = '上传中...';
+    inputElement.disabled = true;
+
+    try {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = async () => {
+            const base64Image = reader.result;
+            const result = await apiRequest('/api/upload/image', {
+                method: 'POST',
+                body: JSON.stringify({ image: base64Image })
+            });
+
+            if (result?.success) {
+                inputElement.value = result.url;
+                showToast('图片上传成功', 'success');
+            } else {
+                showToast(result?.message || '图片上传失败', 'error');
+            }
+            inputElement.disabled = false;
+            inputElement.placeholder = originalPlaceholder;
+            // 清空 file input，以便可以重复上传同一文件
+            const fileInput = document.getElementById('projectImageFile');
+            if(fileInput) fileInput.value = '';
+        };
+        reader.onerror = () => {
+            showToast('读取文件失败', 'error');
+            inputElement.disabled = false;
+            inputElement.placeholder = originalPlaceholder;
+        };
+    } catch (error) {
+        console.error('上传图片出错:', error);
+        showToast('图片上传失败', 'error');
+        inputElement.disabled = false;
+        inputElement.placeholder = originalPlaceholder;
     }
 }
 
