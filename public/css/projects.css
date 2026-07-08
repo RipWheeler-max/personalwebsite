@@ -171,12 +171,12 @@
 }
 
 .project-card.featured {
-    border-color: var(--neon-yellow);
+    border-color: var(--neon-pink);
 }
 
 .project-card.featured:hover {
-    box-shadow: 0 0 10px rgba(255, 255, 0, 0.3),
-                0 0 20px rgba(255, 255, 0, 0.2);
+    box-shadow: 0 0 10px rgba(255, 0, 255, 0.3),
+                0 0 20px rgba(255, 0, 255, 0.2);
 }
 
 .project-card.loading {
@@ -236,9 +236,9 @@
 }
 
 .featured-badge {
-    background: rgba(255, 255, 0, 0.2);
-    color: var(--neon-yellow);
-    border: 1px solid var(--neon-yellow);
+    background: rgba(255, 0, 255, 0.2);
+    color: var(--neon-pink);
+    border: 1px solid var(--neon-pink);
 }
 
 .card-content {
