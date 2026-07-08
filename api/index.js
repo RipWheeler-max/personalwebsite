@@ -22,7 +22,7 @@ const JWT_SECRET = process.env.JWT_SECRET || 'lazy-blog-secret-key-2024';
 // 中间件
 // ============================================
 
-app.use(express.json());
+app.use(express.json({ limit: '10mb' }));
 app.use(cors());
 
 // ============================================
@@ -594,6 +594,35 @@ app.delete('/api/blog/:id', authMiddleware, async (req, res) => {
     res.status(500).json({
       success: false,
       message: '删除文章失败'
+    });
+  }
+});
+
+// ============================================
+// 上传 API
+// ============================================
+
+app.post('/api/upload/image', authMiddleware, (req, res) => {
+  try {
+    const { image } = req.body;
+    if (!image) {
+      return res.status(400).json({
+        success: false,
+        message: '没有接收到图片数据'
+      });
+    }
+
+    // 由于 Vercel Serverless Function 无法写入本地文件系统
+    // 我们直接将 Base64 字符串返回，前端会将其保存到 MongoDB 中
+    res.json({
+      success: true,
+      url: image
+    });
+  } catch (error) {
+    console.error('图片处理错误:', error);
+    res.status(500).json({
+      success: false,
+      message: '图片处理失败'
     });
   }
 });
